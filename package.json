@@ -1,0 +1,35 @@
+{
+  "name": "@gurming/h5-component",
+  "version": "0.0.1",
+  "description": "h5组件库",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "play": "pnpm copy && pnpm -C play format && pnpm -C play dev",
+    "copy": "zx ./scripts/copy.mjs",
+    "component": "rimraf es && rimraf lib && zx ./scripts/build-component.mjs",
+    "style": "rimraf styles && gulp -f ./scripts/build-style.mjs",
+    "build": "pnpm component && pnpm style",
+    "docs:dev": "pnpm -C docs dev",
+    "docs:build": "pnpm -C docs build",
+    "docs:preview": "pnpm -C docs preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "glob": "^8.0.3",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "rollup": "^3.7.4",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "rollup-plugin-vue": "^6.0.0",
+    "sass": "^1.56.2",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.4",
+    "zx": "^7.1.1"
+  }
+}

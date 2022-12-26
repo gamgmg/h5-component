@@ -1,0 +1,12 @@
+{
+  "name": "@gurming/docs",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "vitepress": "1.0.0-alpha.31",
+    "vue": "^3.2.45"
+  }
+}

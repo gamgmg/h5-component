@@ -1,0 +1,12 @@
+{
+  "name": "@gurming/packages",
+  "main": "index.cjs",
+  "peerDependencies": {
+    "lodash": "^4.17.21",
+    "vue": "^3.2.45"
+  },
+  "devDependencies": {
+    "lodash": "^4.17.21",
+    "vue": "^3.2.45"
+  }
+}

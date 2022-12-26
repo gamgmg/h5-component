@@ -1,0 +1,29 @@
+.gm-scroll {
+  position: relative;
+  transform: translateY(-50px);
+  transition-duration: 0.3s;
+  background-color: #f8f8f8;
+}
+.gm-scroll .refresh-text,
+.gm-scroll .loading-text {
+  line-height: 50px;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+.gm-scroll .loading-text {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  background-color: white;
+  box-sizing: border-box;
+}
+.gm-scroll .scroll-content {
+  background-color: white;
+}
+.gm-scroll .empty-text {
+  line-height: 50px;
+  text-align: center;
+}
+.gm-scroll .empty-text img {
+  width: 200px;
+}

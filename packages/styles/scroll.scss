@@ -1,0 +1,34 @@
+
+.gm-scroll {
+	position: relative;
+	transform: translateY(-50px);
+  transition-duration: 0.3s;
+	background-color: #f8f8f8;
+
+  .refresh-text, .loading-text {
+    line-height: 50px;
+    text-align: center;
+    background-color: #f8f8f8;
+  }
+
+  .loading-text {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: white;
+    box-sizing: border-box;
+  }
+
+  .scroll-content {
+    background-color: white;
+  }
+
+  .empty-text {
+    line-height: 50px;
+    text-align: center;
+  }
+
+  .empty-text img {
+    width: 200px;
+  }
+}
