@@ -1,5 +1,5 @@
 export default {
   title: 'VitePress',
   description: 'Just playing around.',
-  base: '/h5-component'
+  base: '/h5-component/docs/'
 }
