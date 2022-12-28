@@ -8,7 +8,7 @@
   </div>
 </template>
 <script setup>
-import { GmScroll } from '@gurming/h5-component'
+import { GmScroll } from '@gurming/h5-component/es'
 import '@gurming/h5-component/styles/scroll.css'
 
 import { onMounted, ref } from "vue";
