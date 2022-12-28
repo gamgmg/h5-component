@@ -30,7 +30,7 @@ importers:
 
   docs:
     specifiers:
-      '@gurming/h5-component': workspace:^0.0.4
+      '@gurming/h5-component': '*'
       '@vitepress-demo-preview/component': ^2.1.0
       '@vitepress-demo-preview/plugin': ^1.1.6
       vite: ^4.0.0
