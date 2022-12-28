@@ -1,3 +1,5 @@
+import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
+
 export default {
   title: 'VitePress',
   description: 'Just playing around.',
@@ -20,31 +22,17 @@ export default {
     ],
     sidebar: [
       {
-        text: 'Section Title A',
+        text: '组件',
         items: [
-          { text: 'Item A', link: '/item-a' },
-          { text: 'Item B', link: '/item-b' },
-        ]
-      },
-      {
-        text: 'Section Title B',
-        items: [
-          { text: 'Item C', link: '/item-c' },
-          { text: 'Item D', link: '/item-d' },
+          { text: 'Scroll', link: '/scroll/' },
         ]
       }
-    ],
-    editLink: {
-      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
-      text: 'Edit this page on GitHub'
-    },
-    footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2019-present Evan You'
-    },
-    carbonAds: {
-      code: 'your-carbon-code',
-      placement: 'your-carbon-placement'
+    ]
+  },
+  markdown: {
+    config(md) {
+      md.use(containerPreview)
+      md.use(componentPreview)
     }
   }
 }
