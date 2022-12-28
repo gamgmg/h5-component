@@ -1,8 +1,12 @@
 .gm-scroll {
   position: relative;
-  transform: translateY(-50px);
   transition-duration: 0.3s;
-  background-color: #f8f8f8;
+  transform: translate3d(0, 0, 0);
+}
+.gm-scroll .refresh-text {
+  position: absolute;
+  bottom: 100%;
+  width: 100%;
 }
 .gm-scroll .refresh-text,
 .gm-scroll .loading-text {
@@ -26,4 +30,5 @@
 }
 .gm-scroll .empty-text img {
   width: 200px;
+  margin: 0 auto;
 }

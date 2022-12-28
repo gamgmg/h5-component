@@ -1,8 +1,14 @@
 
 .gm-scroll {
 	position: relative;
-	transform: translateY(-50px);
   transition-duration: 0.3s;
+  transform: translate3d(0,0,0);
+
+  .refresh-text {
+    position: absolute;
+    bottom: 100%;
+    width: 100%;
+  }
 
   .refresh-text, .loading-text {
     line-height: 50px;

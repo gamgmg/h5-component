@@ -14,7 +14,7 @@ function onUpPull() {
 
 function onDownPull() {
   setTimeout(() => {
-    list.value = new Array(Math.random() > 0.5 ? 0 : 50);
+    list.value = new Array(Math.random() > 0.8 ? 0 : 40);
     scrollRef.value.finishDownPull(list.value.length);
   }, 1000);
 }
@@ -22,7 +22,11 @@ function onDownPull() {
 
 <template>
   <div class="wrapper">
-    <GmScroll ref="scrollRef" @up-pull="onUpPull" @down-pull="onDownPull">
+    <GmScroll
+      ref="scrollRef"
+      @up-pull="onUpPull"
+      @down-pull="onDownPull"
+    >
       <p v-for="(item, key) in list" :key="key">内容{{ key }}</p>
     </GmScroll>
   </div>
