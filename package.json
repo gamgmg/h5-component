@@ -1,6 +1,6 @@
 {
   "name": "@gurming/h5-component",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "h5组件库",
   "module": "es/index.js",
   "main": "lib/index.js",

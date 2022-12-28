@@ -25,7 +25,7 @@ import { computed, nextTick, onMounted, ref } from 'vue'
 const props = defineProps({
   parent: {
     type: Object,
-    default: window
+    default: typeof window !== "undefined" ? window : null
   },
   distance: {
     type: Number,
@@ -63,19 +63,21 @@ const showLoadmoreBtn = ref(false)
 
 onMounted(()=>{
 	nextTick(()=>{
-    parentHeight.value = parent.value instanceof Window ? parent.value.innerHeight : parent.value.clientHeight
-    setShowLoadmoreBtn()
-    parent.value.addEventListener('scroll', ()=>{
-      const scrollTop = parent.value instanceof Window ? parent.value.scrollY : parent.value.scrollTop
-      isScrollTop.value = scrollTop === 0
-      
-      if(srollRef.value.offsetHeight - scrollTop <= parentHeight.value + props.distance){
-        if(isLoading) return
-        isLoading = true
-        loadingText.value = '正在加载......'
-        emits('upPull')
-      }
-    })
+    if(typeof window !== "undefined"){
+      parentHeight.value = parent.value instanceof Window ? parent.value.innerHeight : parent.value.clientHeight
+      setShowLoadmoreBtn()
+      parent.value.addEventListener('scroll', ()=>{
+        const scrollTop = parent.value instanceof Window ? parent.value.scrollY : parent.value.scrollTop
+        isScrollTop.value = scrollTop === 0
+        
+        if(srollRef.value.offsetHeight - scrollTop <= parentHeight.value + props.distance){
+          if(isLoading) return
+          isLoading = true
+          loadingText.value = '正在加载......'
+          emits('upPull')
+        }
+      })
+    }
   })
 })
 
