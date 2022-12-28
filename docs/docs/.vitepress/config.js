@@ -5,20 +5,9 @@ export default {
   description: 'Just playing around.',
   base: '/h5-component/',
   themeConfig: {
-    siteTitle: false,
-    logo: '/logo.svg',
+    siteTitle: 'h5-component',
     nav: [
-      { text: 'Guide', link: '/guide' },
-      { text: 'Configs', link: '/configs' },
-      { text: 'Changelog', link: 'https://github.com/...' },
-      {
-        text: 'Dropdown Menu',
-        items: [
-          { text: 'Item A', link: '/item-1' },
-          { text: 'Item B', link: '/item-2' },
-          { text: 'Item C', link: '/item-3' }
-        ]
-      }
+      { text: 'GitHub', link: 'https://github.com/gamgmg/h5-component' },
     ],
     sidebar: [
       {
