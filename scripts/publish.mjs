@@ -44,7 +44,7 @@ async function addLatestComponentForDocs(version){
   try {
     await $`pnpm -F @gurming/docs add @gurming/h5-component@^${version}`
   } catch (error) {
-    await sleep(3000)
+    await sleep(8000)
     await addLatestComponentForDocs(version)
   }
 }
@@ -95,19 +95,15 @@ async function init(){
 
   await $`git add .`
   await $`git commit -m 'chore(release): ${version}'`
-
-  console.log(`git push => ${currentBranch}`)
   await push(currentBranch)
 
   const masterBranch = 'master'
   if(currentBranch !== masterBranch){
     await $`git checkout ${masterBranch}`
     await $`git merge ${currentBranch}`
-    console.log(`git push => ${currentBranch}`)
     await push(masterBranch)
   }
 
-  console.log(`git tag => ${version}`)
   await $`git tag ${version}`
   await push(version)
 }
