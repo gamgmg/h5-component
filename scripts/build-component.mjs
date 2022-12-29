@@ -4,9 +4,10 @@ import commonjs from 'rollup-plugin-commonjs'
 import vue from 'rollup-plugin-vue'
 import glob from 'glob'
 
-async function build(){
+async function build() {
   const inputFiles = await glob.sync('packages/**/*.{js,ts,jsx,tsx,vue}').reduce((res, file) => {
-    if (file.includes('.d.ts') || file.includes('__test__') || file.includes('node_modules') ) return res
+    if (file.includes('.d.ts') || file.includes('__test__') || file.includes('node_modules'))
+      return res
     let fileName = file.replace('packages/', '').split('.')[0]
     res[fileName] = file
     return res
@@ -21,12 +22,12 @@ async function build(){
       typescript({
         tsconfigOverride: {
           compilerOptions: {
-            declaration: true,
+            declaration: true
           }
         },
-        abortOnError: false,
+        abortOnError: false
       }),
-      vue(),
+      vue()
     ]
   }
 
@@ -40,7 +41,7 @@ async function build(){
   const lib = {
     dir: 'lib',
     entryFileNames: '[name].js',
-    format: 'cjs',
+    format: 'cjs'
   }
   const bundle = await rollup(inputOptions)
 

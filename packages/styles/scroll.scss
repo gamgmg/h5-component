@@ -1,8 +1,7 @@
-
 .gm-scroll {
-	position: relative;
+  position: relative;
   transition-duration: 0.3s;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
 
   .refresh-text {
     position: absolute;
@@ -10,7 +9,8 @@
     width: 100%;
   }
 
-  .refresh-text, .loading-text {
+  .refresh-text,
+  .loading-text {
     line-height: 50px;
     text-align: center;
     background-color: #f8f8f8;

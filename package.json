@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix",
     "play": "pnpm copy && pnpm -C play format && pnpm -C play dev",
     "copy": "zx ./scripts/copy.mjs",
     "component": "rimraf es && rimraf lib && zx ./scripts/build-component.mjs",
@@ -21,15 +22,23 @@
     "docs:dev": "pnpm -C docs dev",
     "docs:build": "pnpm -C docs build",
     "docs:preview": "pnpm -C docs preview",
-    "pub": "zx ./scripts/publish.mjs"
+    "pub": "zx ./scripts/publish.mjs",
+    "format": "prettier --write .",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "glob": "^8.0.3",
     "gulp": "^4.0.2",
     "gulp-sass": "^5.1.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.7.1",
     "prompts": "^2.4.2",
     "rollup": "^3.7.4",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -44,5 +53,15 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    ".": [
+      "prettier --write"
+    ]
   }
 }

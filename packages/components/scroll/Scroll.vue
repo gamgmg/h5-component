@@ -1,6 +1,12 @@
 <template>
-  <div ref="scrollRef" class="gm-scroll" @touchstart="onTouchstart" @touchmove="onTouchmove" @touchend="onTouchend">
-    <div class="refresh-text" v-if="useDownPull">{{refreshText}}</div>
+  <div
+    ref="scrollRef"
+    class="gm-scroll"
+    @touchstart="onTouchstart"
+    @touchmove="onTouchmove"
+    @touchend="onTouchend"
+  >
+    <div class="refresh-text" v-if="useDownPull">{{ refreshText }}</div>
     <div class="scroll-content">
       <div class="empty-text" v-if="showEmpty && isEmpty">
         <div><img src="https://www.mescroll.com/img/mescroll-empty.png" alt="" /></div>
@@ -8,7 +14,7 @@
       </div>
       <template v-else>
         <slot />
-        <div v-if="useUpPull && showLoadmoreBtn" class="loading-text">{{loadingText}}</div>
+        <div v-if="useUpPull && showLoadmoreBtn" class="loading-text">{{ loadingText }}</div>
       </template>
     </div>
   </div>
@@ -29,11 +35,11 @@ const props = defineProps({
   },
   distance: {
     type: Number,
-    default: 40,
+    default: 40
   },
   showEmpty: {
     type: Boolean,
-    default: true,
+    default: true
   },
   useUpPull: {
     type: Boolean,
@@ -69,16 +75,21 @@ const parentHeight = ref(0)
 const parent = computed(() => props.parent)
 const showLoadmoreBtn = ref(false)
 
-onMounted(()=>{
-	nextTick(()=>{
-    parentHeight.value = parent.value instanceof Window ? parent.value.innerHeight : parent.value.clientHeight
+onMounted(() => {
+  nextTick(() => {
+    parentHeight.value =
+      parent.value instanceof Window ? parent.value.innerHeight : parent.value.clientHeight
     setShowLoadmoreBtn()
-    parent.value.addEventListener('scroll', ()=>{
-      const scrollTop = parent.value instanceof Window ? parent.value.scrollY : parent.value.scrollTop
+    parent.value.addEventListener('scroll', () => {
+      const scrollTop =
+        parent.value instanceof Window ? parent.value.scrollY : parent.value.scrollTop
       isScrollTop.value = scrollTop === 0
-      
-      if(props.useUpPull && scrollRef.value.offsetHeight - scrollTop <= parentHeight.value + props.distance){
-        if(isLoading) return
+
+      if (
+        props.useUpPull &&
+        scrollRef.value.offsetHeight - scrollTop <= parentHeight.value + props.distance
+      ) {
+        if (isLoading) return
         isLoading = true
         loadingText.value = '正在加载......'
         emits('upPull')
@@ -87,22 +98,22 @@ onMounted(()=>{
   })
 })
 
-function finishUpPull(){
+function finishUpPull() {
   loadingText.value = '加载更多'
   isLoading = false
 }
 
-function setShowLoadmoreBtn(){
+function setShowLoadmoreBtn() {
   showLoadmoreBtn.value = scrollRef.value.offsetHeight > parentHeight.value
 }
 
 const isEmpty = ref(false)
 
 function finishDownPull(dataLength: number) {
-  setTimeout(()=>{
+  setTimeout(() => {
     setShowLoadmoreBtn()
   })
-  
+
   isEmpty.value = dataLength === 0
 
   setScrollHeight()
@@ -112,69 +123,71 @@ function finishDownPull(dataLength: number) {
 
   refreshText.value = '下拉刷新'
   isRefreshing = false
-  setTimeout(()=>{
+  setTimeout(() => {
     scrollRef.value.style.transitionDuration = '0ms'
     scrollRef.value.style.transform = 'translate3d(0,0,0)'
   }, 400)
 }
 
-function setScrollHeight(){
+function setScrollHeight() {
   scrollRef.value.style.height = isEmpty.value ? `${parentHeight.value}px` : 'auto'
 }
 
-function  onTouchstart(event: any) {
-	const touch = event.targetTouches[0]
-	startPoint = touch.pageY
-	resistance = 0
+function onTouchstart(event: any) {
+  const touch = event.targetTouches[0]
+  startPoint = touch.pageY
+  resistance = 0
 }
 
 function onTouchmove(event: any) {
-	if(!isScrollTop.value) return
-	const touch = event.targetTouches[0]
-	endPoint = touch.pageY
-	moveDistance = endPoint - startPoint
-	if(moveDistance <= 0 ) return
+  if (!isScrollTop.value) return
+  const touch = event.targetTouches[0]
+  endPoint = touch.pageY
+  moveDistance = endPoint - startPoint
+  if (moveDistance <= 0) return
 
-  if(!props.useDownPull) return
-  
+  if (!props.useDownPull) return
+
   // 这里需要等preventDefault事件取消后再重新设置preventDefault
   // 不然重复设置preventDefault，浏览器会有warning
-	if (event.cancelable) {
+  if (event.cancelable) {
     event.preventDefault()
   }
 
-	resistance = moveDistance/1.4 // 根据手指滑动距离设置阻力
-  
-	if(moveDistance > parentHeight.value*0.2) {
-		canRefresh = true
-		refreshText.value = '释放更新'
-	}else{
+  resistance = moveDistance / 1.4 // 根据手指滑动距离设置阻力
+
+  if (moveDistance > parentHeight.value * 0.2) {
+    canRefresh = true
+    refreshText.value = '释放更新'
+  } else {
     canRefresh = false
-		refreshText.value = '下拉刷新'
+    refreshText.value = '下拉刷新'
   }
   scrollRef.value.style.transitionDuration = '0ms'
-	scrollRef.value.style.transform = `translate3d(0, ${0 + (moveDistance - resistance > 0 ? moveDistance - resistance : 0)}px, 0)`
+  scrollRef.value.style.transform = `translate3d(0, ${
+    0 + (moveDistance - resistance > 0 ? moveDistance - resistance : 0)
+  }px, 0)`
   setScrollHeight()
 }
 
 function onTouchend() {
   // 先解除绑定touchmove事件，恢复preventDefault，再重新绑定touchmove事件
-	scrollRef.value.removeEventListener('touchmove', onTouchmove)
-	scrollRef.value.addEventListener('touchmove', onTouchmove)
+  scrollRef.value.removeEventListener('touchmove', onTouchmove)
+  scrollRef.value.addEventListener('touchmove', onTouchmove)
   scrollRef.value.style.transitionDuration = '0.3s'
 
-	if(!isScrollTop) return
-	if(moveDistance <= 0) return (moveDistance = 0)
-	moveDistance = 0
-	if (canRefresh) {
-    if(isRefreshing) return
+  if (!isScrollTop) return
+  if (moveDistance <= 0) return (moveDistance = 0)
+  moveDistance = 0
+  if (canRefresh) {
+    if (isRefreshing) return
     isRefreshing = true
     scrollRef.value.style.transform = 'translate3d(0,50px,0)'
-		refreshText.value = '加载中......'
+    refreshText.value = '加载中......'
     canRefresh = false
     emits('downPull')
-	} else {
+  } else {
     scrollRef.value.style.transform = 'translate3d(0,0,0)'
-	}
+  }
 }
 </script>

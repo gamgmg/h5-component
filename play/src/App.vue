@@ -22,11 +22,7 @@ function onDownPull() {
 
 <template>
   <div class="wrapper">
-    <GmScroll
-      ref="scrollRef"
-      @up-pull="onUpPull"
-      @down-pull="onDownPull"
-    >
+    <GmScroll ref="scrollRef" @up-pull="onUpPull" @down-pull="onDownPull">
       <p v-for="(item, key) in list" :key="key">内容{{ key }}</p>
     </GmScroll>
   </div>

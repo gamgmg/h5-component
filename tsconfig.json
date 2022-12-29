@@ -3,7 +3,7 @@
     "target": "ES2017",
     "strict": false,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "Node"
   },
   "include": ["packages"]
 }
