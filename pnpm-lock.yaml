@@ -34,14 +34,14 @@ importers:
 
   docs:
     specifiers:
-      '@gurming/h5-component': ^0.0.13
+      '@gurming/h5-component': ^0.0.14
       '@vitepress-demo-preview/component': ^2.1.0
       '@vitepress-demo-preview/plugin': ^1.1.6
       vite: ^4.0.0
       vitepress: 1.0.0-alpha.31
       vue: ^3.2.45
     dependencies:
-      '@gurming/h5-component': registry.npmmirror.com/@gurming/h5-component/0.0.13
+      '@gurming/h5-component': registry.npmmirror.com/@gurming/h5-component/0.0.14
       '@vitepress-demo-preview/component': registry.npmmirror.com/@vitepress-demo-preview/component/2.1.0_i6afgrsv4jycr5zlvx34p7jsri
       '@vitepress-demo-preview/plugin': registry.npmmirror.com/@vitepress-demo-preview/plugin/1.1.6_i6afgrsv4jycr5zlvx34p7jsri
       vitepress: 1.0.0-alpha.31
@@ -4897,10 +4897,10 @@ packages:
     requiresBuild: true
     optional: true
 
-  registry.npmmirror.com/@gurming/h5-component/0.0.13:
-    resolution: {integrity: sha512-jHbJ05EiFqtsJOLmmD4rh7pylUhiLn+LpBMoWvm6qwXUEFSMslfBQl5kb/ZTbBJRtN3z7YZDNPGaOt5RFhkpZA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@gurming/h5-component/-/h5-component-0.0.13.tgz}
+  registry.npmmirror.com/@gurming/h5-component/0.0.14:
+    resolution: {integrity: sha512-b3Zav4aRl3gOyjq3OQEtpyf/XaKb0yhFGj3s5upcDRoWgmFPi4r1udeDKkyv4or/rMowfvsTbtOCuEwqjZAqVQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@gurming/h5-component/-/h5-component-0.0.14.tgz}
     name: '@gurming/h5-component'
-    version: 0.0.13
+    version: 0.0.14
     dev: false
 
   registry.npmmirror.com/@vitepress-demo-preview/component/2.1.0_i6afgrsv4jycr5zlvx34p7jsri:

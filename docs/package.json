@@ -6,7 +6,7 @@
     "preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@gurming/h5-component": "^0.0.13",
+    "@gurming/h5-component": "^0.0.14",
     "@vitepress-demo-preview/component": "^2.1.0",
     "@vitepress-demo-preview/plugin": "^1.1.6",
     "vitepress": "1.0.0-alpha.31",
