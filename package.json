@@ -1,5 +1,5 @@
 {
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "h5组件库",
   "module": "es/index.js",
   "main": "lib/index.js",
@@ -30,11 +30,13 @@
     "glob": "^8.0.3",
     "gulp": "^4.0.2",
     "gulp-sass": "^5.1.0",
+    "prompts": "^2.4.2",
     "rollup": "^3.7.4",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "rollup-plugin-vue": "^6.0.0",
     "sass": "^1.56.2",
+    "semver": "^7.3.8",
     "tslib": "^2.4.1",
     "typescript": "^4.9.4",
     "zx": "^7.1.1"
@@ -42,6 +44,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  },
-  "name": "@gurming/h5-component"
+  }
 }
