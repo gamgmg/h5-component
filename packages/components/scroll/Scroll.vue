@@ -24,7 +24,7 @@ import { computed, nextTick, onMounted, ref } from 'vue'
 
 const props = defineProps({
   parent: {
-    type: HTMLElement,
+    type: Object,
     default: typeof window !== 'undefined' ? window : null // 当打包docs时，ssr环境下没有window对象会导致打包报错
   },
   distance: {
