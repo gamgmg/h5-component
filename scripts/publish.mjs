@@ -40,6 +40,14 @@ async function push(name){
   }
 }
 
+async function addLatestComponentForDocs(version){
+  try {
+    await $`pnpm -F @gurming/docs add @gurming/h5-component@^${version}`
+  } catch (error) {
+    await addLatestComponentForDocs(version)
+  }
+}
+
 async function init(){
   let pkg = getPkg()
   
@@ -50,17 +58,11 @@ async function init(){
       type: "select",
       choices: versionList(pkg.version),
     },
-    {
-      message: "是否要添加tag？",
-      name: "tag",
-      type: "confirm",
-    },
   ])
 
-  const { version, tag } = res;
+  const { version } = res;
   console.log(`
     版本号：${version}
-    是否要添加tag: ${tag}
   `);
 
   const isConfirm = await prompts([
@@ -74,26 +76,24 @@ async function init(){
   if (!isConfirm.value) process.exit(1);
 
   pkg.version = version;
-
-  pkg.name = '@gurming/h5-component'
-
+  pkg = { name: '@gurming/h5-component', ...pkg }
   setPkg(pkg)
 
   const branchStr = (await $`git branch`).stdout
   const currentBranch = branchStr.slice(2, branchStr.match("\n").index);
   
   await $`pnpm build`
-  
   await $`npm publish`
   
   pkg = getPkg()
-  
   delete pkg.name
-  
   setPkg(pkg)
 
-  await $`git add .`
+  await sleep(1000)
+  await $`pnpm -F @gurming/docs remove @gurming/h5-component`
+  await addLatestComponentForDocs(version)
 
+  await $`git add .`
   await $`git commit -m 'chore(release): ${version}'`
 
   console.log(`git push => ${currentBranch}`)
@@ -107,13 +107,10 @@ async function init(){
     await push(masterBranch)
   }
 
-  if (tag) {
-    console.log(`git tag => ${tag}`)
-    await push(tag)
-  }
+  console.log(`git tag => ${version}`)
+  await $`git tag ${version}`
+  await push(version)
 }
 
 init()
-
-
 
