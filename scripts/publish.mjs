@@ -44,6 +44,7 @@ async function addLatestComponentForDocs(version){
   try {
     await $`pnpm -F @gurming/docs add @gurming/h5-component@^${version}`
   } catch (error) {
+    await sleep(3000)
     await addLatestComponentForDocs(version)
   }
 }
@@ -89,7 +90,6 @@ async function init(){
   delete pkg.name
   setPkg(pkg)
 
-  await sleep(1000)
   await $`pnpm -F @gurming/docs remove @gurming/h5-component`
   await addLatestComponentForDocs(version)
 
@@ -113,4 +113,3 @@ async function init(){
 }
 
 init()
-
