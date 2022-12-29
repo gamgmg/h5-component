@@ -1,6 +1,5 @@
 {
-  "name": "@gurming/h5-component",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "h5组件库",
   "module": "es/index.js",
   "main": "lib/index.js",
@@ -21,7 +20,8 @@
     "build": "pnpm component && pnpm style",
     "docs:dev": "pnpm -C docs dev",
     "docs:build": "pnpm -C docs build",
-    "docs:preview": "pnpm -C docs preview"
+    "docs:preview": "pnpm -C docs preview",
+    "pub": "zx ./scripts/publish.mjs"
   },
   "keywords": [],
   "author": "",
@@ -42,5 +42,6 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "name": "@gurming/h5-component"
 }
