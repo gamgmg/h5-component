@@ -1,7 +1,7 @@
 import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
 
 export default {
-  title: 'VitePress',
+  title: 'h5-component',
   description: 'Just playing around.',
   base: '/h5-component/',
   themeConfig: {
